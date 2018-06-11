@@ -23,6 +23,8 @@
     "bulma": "^0.7.1",
     "core-js": "^2.5.4",
     "hoek": "^5.0.3",
+    "ng2-izitoast": "^2.0.0",
+    "pretty-checkbox": "^3.0.3",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"
   },

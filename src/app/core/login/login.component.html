@@ -1,0 +1,47 @@
+<section class="hero is-success is-fullheight td-login">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <div class="column is-6 is-offset-3 td-title">
+        <h3 class="title has-text-grey">Welcome to the todolist app !</h3>
+      </div>
+      <div class="column is-4 is-offset-4">
+        <div class="box td-box">
+          <figure class="avatar td-logo">
+            <img src="assets/images/app-Icon.png">
+          </figure>
+          <form [formGroup]="loginForm">
+            <div class="field">
+              <div class="control">
+                <input class="input is-large" [ngClass]="{ 'is-danger': submitted && (loginForm.controls.email.errors || errors) }" formControlName="email" type="email" placeholder="Your Email" autofocus="" required>
+                <div *ngIf="submitted && loginForm.controls.email.errors" class="invalid-feedback">
+                  <div *ngIf="loginForm.controls.email.errors.required">Username is required</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="control">
+                <input class="input is-large" [ngClass]="{ 'is-danger': submitted && (loginForm.controls.password.errors || errors) }" formControlName="password" type="password" placeholder="Your Password" required>
+                <div *ngIf="submitted && loginForm.controls.password.errors" class="invalid-feedback">
+                  <div *ngIf="loginForm.controls.password.errors.required">Password is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <div class="pretty p-default p-round p-smooth td-checkbox">
+                <input type="checkbox" />
+                <div class="state p-primary">
+                  <label>Remenber me</label>
+                </div>
+              </div>
+            </div>
+            <button class="button is-block is-info is-large is-fullwidth" (click)="logIn()" [disabled]="loading">Login</button>
+          </form>
+        </div>
+        <p class="td-register">
+           Don't have an account? <a href="../">Register now</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

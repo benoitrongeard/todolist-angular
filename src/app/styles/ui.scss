@@ -1,0 +1,4 @@
+//Login checkbox
+.pretty input:checked ~ .state.p-primary label::after, .pretty.p-toggle .state.p-primary label::after {
+    background-color: $primary !important;
+}

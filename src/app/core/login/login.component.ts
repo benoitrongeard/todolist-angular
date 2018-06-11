@@ -33,7 +33,10 @@ export class LoginComponent implements OnInit {
       rememberMeState: ['']
     });
 
-    // get return url from route parameters or default to '/'
+    // Reset login status
+    this.auth.logout();
+
+    // Get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 

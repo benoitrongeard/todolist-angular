@@ -10,6 +10,25 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
+  getToken(): string {
+    return localStorage.getItem('token');
+  }
+
+  getRememberMeState() {
+    return localStorage.getItem('rememberMeState');
+  }
+
+  refreshToken() {
+    return this.http.post<any>(environment.api + 'auth/refresh', {})
+      .pipe(map(user => {
+        if (user && user.access_token) {
+          localStorage.setItem('token', user.access_token);
+        }
+
+        return user;
+      }));
+  }
+
   logIn(email: string, password: string) {
     return this.http.post<any>(environment.api + 'auth/login', { email: email, password: password })
       .pipe(map(user => {
@@ -22,5 +41,11 @@ export class AuthService {
 
         return user;
       }));
+  }
+
+  logout() {
+    // Remove user from local storage to log user out
+    localStorage.removeItem('userId');
+    localStorage.removeItem('token');
   }
 }

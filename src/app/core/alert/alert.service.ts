@@ -33,7 +33,7 @@ export class AlertService {
     closeOnEscape: false,
     closeOnClick: false,
     rtl: false,
-    position: 'bottomRight', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
+    position: 'topCenter', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
     target: '',
     targetFirst: true,
     toastOnce: false,
@@ -48,10 +48,10 @@ export class AlertService {
     overlay: false,
     overlayClose: false,
     overlayColor: 'rgba(0, 0, 0, 0.6)',
-    transitionIn: 'fadeInUp',
-    transitionOut: 'fadeOut',
-    transitionInMobile: 'fadeInUp',
-    transitionOutMobile: 'fadeOutDown',
+    transitionIn: 'bounceInDown',
+    transitionOut: 'fadeOutUp',
+    transitionInMobile: 'bounceInDown',
+    transitionOutMobile: 'fadeOutUp',
     buttons: {},
     inputs: {},
     onOpening: function () { },
@@ -65,14 +65,23 @@ export class AlertService {
   showError(errors) {
     let config = {
       color: 'red',
-      position: 'topCenter',
       icon: 'ico-error',
       title: 'Error',
-      message: errors,
-      transitionIn: 'bounceInDown',
-      transitionOut: 'fadeOutUp',
-      transitionInMobile: 'bounceInDown',
-      transitionOutMobile: 'fadeOutUp',
+      message: errors, 
+    }
+
+    //Merge default config with error config
+    this.toasterConfig = { ...this.toasterConfig, ...config };
+
+    this.iziToast.show(this.toasterConfig);
+  }
+
+  showSuccess(msg) {
+    let config = {
+      color: 'green',
+      icon: 'ico-success',
+      title: 'Success',
+      message: msg,
     }
 
     //Merge default config with error config

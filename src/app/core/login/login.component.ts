@@ -29,7 +29,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      rememberMeState: ['']
     });
 
     // get return url from route parameters or default to '/'
@@ -50,12 +51,18 @@ export class LoginComponent implements OnInit {
       .subscribe(
         data => {
           this.router.navigate([this.returnUrl]);
+          this.alert.showSuccess("You are now connected");
         },
         error => {
           let errors = this.alert.decodeError(error);
           this.alert.showError(errors);
           this.errors = true;
           this.loading = false;
+          this.loginForm.controls['password'].setValue("");
         });
+  }
+
+  rememberMe() {
+    localStorage.setItem("rememberMeState", this.loginForm.controls['rememberMeState'].value);
   }
 }

@@ -52,7 +52,7 @@ export class JwtInterceptor implements HttpInterceptor {
             }, error => {
                 // If there is error, we navigate to login page
                 if (error instanceof HttpErrorResponse) {
-                    if(error.status === 401) {
+                    if (error.status === 401 || error.status === 500) {
                         this.router.navigate(['/login']);
                     }
                 }

@@ -27,14 +27,15 @@ export class LoginComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+    if (this.auth.alreadyConnected()) {
+      this.router.navigate(['/']);
+    }
+
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.required],
       password: ['', Validators.required],
       rememberMeState: ['']
     });
-
-    // Reset login status
-    this.auth.logout();
 
     // Get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';

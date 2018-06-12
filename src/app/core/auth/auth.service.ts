@@ -2,13 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  jwtHelper: JwtHelperService;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    this.jwtHelper = new JwtHelperService();
+  }
 
   getToken(): string {
     return localStorage.getItem('token');
@@ -41,6 +45,11 @@ export class AuthService {
 
         return user;
       }));
+  }
+
+  alreadyConnected() {
+    //return true if user is connected, false otherwise
+    return !this.jwtHelper.isTokenExpired(this.getToken());
   }
 
   logout() {

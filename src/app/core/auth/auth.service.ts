@@ -33,8 +33,8 @@ export class AuthService {
       }));
   }
 
-  logIn(email: string, password: string) {
-    return this.http.post<any>(environment.api + 'auth/login', { email: email, password: password })
+  logIn(user: object) {
+    return this.http.post<any>(environment.api + 'auth/login', user)
       .pipe(map(user => {
         // Login successful if there's a jwt token in the response
         if (user && user.access_token) {
@@ -48,7 +48,7 @@ export class AuthService {
   }
 
   alreadyConnected() {
-    //return true if user is connected, false otherwise
+    // Return true if user is connected, false otherwise
     return !this.jwtHelper.isTokenExpired(this.getToken());
   }
 

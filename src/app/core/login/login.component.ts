@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.auth.logIn(this.loginForm.controls['email'].value, this.loginForm.controls['password'].value)
+    this.auth.logIn(this.loginForm.value)
       .pipe(first())
       .subscribe(
         data => {

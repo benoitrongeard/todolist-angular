@@ -14,7 +14,7 @@
               <div class="control">
                 <input class="input is-large" [ngClass]="{ 'is-danger': submitted && (loginForm.controls.email.errors || errors) }" formControlName="email" type="email" placeholder="Your Email" autofocus="" required>
                 <div *ngIf="submitted && loginForm.controls.email.errors" class="invalid-feedback">
-                  <div *ngIf="loginForm.controls.email.errors.required">Username is required</div>
+                  <div *ngIf="loginForm.controls.email.errors.required">Email is required</div>
                 </div>
               </div>
             </div>

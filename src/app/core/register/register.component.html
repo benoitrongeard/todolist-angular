@@ -1,3 +1,71 @@
-<p>
-  register works!
-</p>
+<section class="hero is-success is-fullheight td-register">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <div class="column is-6 is-offset-3 td-title">
+        <h3 class="title has-text-grey">Welcome to the todolist app !</h3>
+      </div>
+      <div class="column is-4 is-offset-4">
+        <div class="box td-box">
+          <figure class="avatar td-logo">
+            <img src="assets/images/app-Icon.png">
+          </figure>
+          <form [formGroup]="registerForm">
+            <div class="field">
+              <div class="control">
+                <input class="input is-large" [ngClass]="{ 'is-danger': submitted && (registerForm.controls.name.errors || errors) }" formControlName="name"
+                  type="email" placeholder="Your Name" autofocus="" required>
+                <div *ngIf="submitted && registerForm.controls.name.errors" class="invalid-feedback">
+                  <div *ngIf="registerForm.controls.name.errors.required">Username is required</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="control">
+                <input class="input is-large" [ngClass]="{ 'is-danger': submitted && (registerForm.controls.email.errors || errors) }" formControlName="email"
+                  type="email" placeholder="Your Email" autofocus="" required>
+                <div *ngIf="submitted && registerForm.controls.email.errors" class="invalid-feedback">
+                  <div *ngIf="registerForm.controls.email.errors.required">Email is required</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="control">
+                <input class="input is-large" [ngClass]="{ 'is-danger': submitted && (registerForm.controls.password.errors || errors) }" formControlName="password"
+                  type="password" placeholder="Your Password" required>
+                <div *ngIf="submitted && registerForm.controls.password.errors" class="invalid-feedback">
+                  <div *ngIf="registerForm.controls.password.errors.required">Password is required</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="control">
+                <input class="input is-large" [ngClass]="{ 'is-danger': submitted && (registerForm.controls.password_confirmation.errors || errors) }"
+                  formControlName="password_confirmation" type="password" placeholder="Password confirmation" required>
+                <div *ngIf="submitted && registerForm.controls.password_confirmation.errors" class="invalid-feedback">
+                  <div *ngIf="registerForm.controls.password_confirmation.errors.required">Password confirmation is required</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="pretty p-default p-round p-smooth td-checkbox">
+                <input type="checkbox" formControlName="rememberMeState" (change)="rememberMe()" />
+                <div class="state p-primary">
+                  <label>Remember me</label>
+                </div>
+              </div>
+            </div>
+            <button class="button is-block is-info is-large is-fullwidth" (click)="register()" [disabled]="loading">Register</button>
+          </form>
+        </div>
+        <p class="td-register">
+          Already have an account?
+          <a routerLink="/login">Log in now</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

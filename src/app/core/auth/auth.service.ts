@@ -47,6 +47,20 @@ export class AuthService {
       }));
   }
 
+  register(user: object) {  
+    return this.http.post<any>(environment.api + 'auth/register', user)
+      .pipe(map(user => {
+        // Register successful if there's a jwt token in the response
+        if (user && user.access_token) {
+          // Store the userId and the token in localStorage;
+          localStorage.setItem('userId', user.user_id);
+          localStorage.setItem('token', user.access_token);
+        }
+
+        return user;
+      }));
+  }
+
   alreadyConnected() {
     // Return true if user is connected, false otherwise
     return !this.jwtHelper.isTokenExpired(this.getToken());

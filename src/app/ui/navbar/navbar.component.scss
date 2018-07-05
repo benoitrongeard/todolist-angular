@@ -1,0 +1,30 @@
+@import "../../styles/colors.scss";
+
+.td-navbar {
+    background-color: $primary;
+
+    .navbar-brand {
+        .td-title {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        span {
+            color: white;
+        }
+    }
+
+    .navbar-menu {
+        .td-navbar-button {
+            border-color: white;
+            background-color: $primary;
+            color: white;
+            font-weight: bold;
+
+            &:hover {
+                background-color: white;
+                color: $primary;
+            }
+        }
+    }
+}

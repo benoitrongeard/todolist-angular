@@ -11,11 +11,11 @@ const routes: Routes = [
             {
                 path: '',
                 redirectTo: 'active',
+                pathMatch: 'full'
             },
             {
                 path: 'active',
-                component: ActiveComponent,
-                outlet: 'taskRouter'
+                component: ActiveComponent
             }
         ]
     },

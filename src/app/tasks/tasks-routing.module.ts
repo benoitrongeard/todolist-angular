@@ -10,8 +10,7 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                component: ActiveComponent,
-                outlet: 'taskRouter'
+                redirectTo: 'active',
             },
             {
                 path: 'active',
@@ -19,6 +18,10 @@ const routes: Routes = [
                 outlet: 'taskRouter'
             }
         ]
+    },
+    {
+        path: '**',
+        redirectTo: ''
     }
 ];
 

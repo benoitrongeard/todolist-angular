@@ -8,6 +8,11 @@ import { AuthGuard } from './core/auth/auth.guard';
 const routes: Routes = [
     {
         path: '',
+        redirectTo: 'home',
+        pathMatch: 'full'
+    },
+    {
+        path: 'home',
         loadChildren: './tasks/tasks.module#TasksModule',
         canActivate: [AuthGuard]
     },

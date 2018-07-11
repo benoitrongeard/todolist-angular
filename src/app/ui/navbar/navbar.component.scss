@@ -1,29 +1,43 @@
 @import "../../styles/colors.scss";
 
 .td-navbar {
-    background-color: $primary;
+    background-color: #FFFFFF;
 
-    .navbar-brand {
-        .td-title {
-            font-size: 2rem;
-            font-weight: bold;
-        }
+    .td-navbar-container {
 
-        span {
-            color: white;
+        .navbar-brand {
+            align-items: center;
+
+            @media screen and (min-width: 1088px) {
+                align-items: stretch;
+            }
+
+            .td-title {
+                font-size: 2rem;
+                font-weight: bold;
+            }
+
+            span {
+                color: $primary;
+            }
         }
     }
 
     .navbar-menu {
+        .td-navbar-link {
+            color: $primary;
+            font-weight: bold;
+        }
+
         .td-navbar-button {
-            border-color: white;
-            background-color: $primary;
-            color: white;
+            border-color: $primary;
+            background-color: #FFFFFF;
+            color: $primary;
             font-weight: bold;
 
             &:hover {
-                background-color: white;
-                color: $primary;
+                background-color: $primary;
+                color: #FFFFFF;
             }
         }
     }

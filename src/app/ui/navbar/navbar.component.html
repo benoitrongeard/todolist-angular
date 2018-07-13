@@ -5,20 +5,20 @@
         <span class="td-title">Todolist</span>
       </a>
 
-      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <a role="button" class="navbar-burger" [ngClass]="{'is-active': activeMobileMenu}" aria-label="menu" aria-expanded="false" (click)="toggleMenu()">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
       </a>
     </div>
 
-    <div class="navbar-menu">
+    <div class="navbar-menu" [ngClass]="{'is-active': activeMobileMenu}">
       <div class="navbar-end">
         <div class="navbar-item">
           <a class="td-navbar-link">Profile</a>
         </div>
         <div class="navbar-item">
-          <a class="button td-navbar-button">Logout</a>
+          <a class="button td-navbar-button" (click)="logout()">Logout</a>
         </div>
       </div>
     </div>

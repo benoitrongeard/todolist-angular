@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/core/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'td-navbar',
@@ -6,10 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  private activeMobileMenu: boolean = false;
 
-  constructor() { }
+  constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit() {
+  }
+
+  toggleMenu() {
+    this.activeMobileMenu = !this.activeMobileMenu;
+  }
+
+  logout() {
+    this.auth.logout();
+    this.router.navigate(['/login']);
   }
 
 }

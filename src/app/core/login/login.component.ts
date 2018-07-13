@@ -37,6 +37,9 @@ export class LoginComponent implements OnInit {
       rememberMeState: ['']
     });
 
+    let rememberMeValue = (this.auth.getRememberMeState() == "true");
+    this.loginForm.controls['rememberMeState'].setValue(rememberMeValue);
+    
     // Get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }

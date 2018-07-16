@@ -3,6 +3,7 @@ import { LoginComponent } from './core/login/login.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './core/auth/auth.guard';
+import { ProfileComponent } from './core/profile/profile.component';
 
 const routes: Routes = [
     {
@@ -22,6 +23,10 @@ const routes: Routes = [
     {
         path: 'register',
         component: RegisterComponent,
+    },
+    {
+        path: 'settings/profile',
+        component: ProfileComponent,
     },
     {
         path: '**', 

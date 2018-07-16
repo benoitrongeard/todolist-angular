@@ -18,10 +18,6 @@ const routes: Routes = [
                 component: ActiveComponent
             }
         ]
-    },
-    {
-        path: '**',
-        redirectTo: ''
     }
 ];
 

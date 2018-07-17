@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { User } from '../../shared/models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -59,6 +60,10 @@ export class AuthService {
 
         return user;
       }));
+  }
+
+  getConnectedUser() {
+    return this.http.get<User>(environment.api + 'auth/me');
   }
 
   alreadyConnected() {

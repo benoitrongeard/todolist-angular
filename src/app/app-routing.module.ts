@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './core/auth/auth.guard';
 import { ProfileComponent } from './core/profile/profile.component';
+import { UserResolverService } from './core/auth/user-resolver.service';
 
 const routes: Routes = [
     {
@@ -27,6 +28,9 @@ const routes: Routes = [
     {
         path: 'settings/profile',
         component: ProfileComponent,
+        resolve: {
+            user: UserResolverService
+        }
     },
     {
         path: '**', 

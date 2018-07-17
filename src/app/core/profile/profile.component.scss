@@ -1,0 +1,22 @@
+@import "../../styles/colors.scss";
+
+.td-profile-card-header {
+    box-shadow: none;
+    .td-card-title {
+        border-bottom: 2px solid #FAFAFA;
+        font-size: 1.3rem;
+        color: $primary;
+    }
+}
+
+.td-card-content {
+    input {
+        &:focus, &:hover {
+            border-color: $primary;
+            box-shadow: none;
+        }
+    }
+    .label {
+        color: $primary;
+    }
+}

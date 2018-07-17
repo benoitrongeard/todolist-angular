@@ -6,3 +6,16 @@ html, body {
 .pretty input:checked ~ .state.p-primary label::after, .pretty.p-toggle .state.p-primary label::after {
     background-color: $primary !important;
 }
+
+//Button
+.td-button {
+    border-color: $primary;
+    background-color: #FFFFFF;
+    color: $primary;
+    font-weight: bold;
+
+    &:hover {
+        background-color: $primary;
+        color: #FFFFFF;
+    }
+}

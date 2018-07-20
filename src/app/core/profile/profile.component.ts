@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ProfileComponent implements OnInit {
 
   private user: User;
+  private tab: string = "profile";
 
   constructor(private route: ActivatedRoute) { }
 
@@ -17,4 +18,7 @@ export class ProfileComponent implements OnInit {
     this.user = this.route.snapshot.data.user;
   }
 
+  toggleTab(tabSelected: string) {
+    this.tab = tabSelected;
+  }
 }

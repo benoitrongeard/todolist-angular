@@ -1,5 +1,23 @@
 @import "../../styles/colors.scss";
 
+.td-profile-tabs {
+
+    a {
+        &:hover {
+            color: $primary;
+            border-bottom-color: $primary;
+        }
+    }
+
+    .is-active {
+        a {
+            color: $primary;
+            font-weight: bold;
+            border-bottom-color: $primary;
+        }
+    }
+}
+
 .td-profile-card-header {
     box-shadow: none;
     .td-card-title {

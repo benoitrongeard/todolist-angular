@@ -19,3 +19,16 @@ html, body {
         color: #FFFFFF;
     }
 }
+
+.td-danger {
+    @extend .td-button;
+    border-color: #df3939;
+    background-color: #FFFFFF;
+    color: #df3939;
+    font-weight: bold;
+    
+    &:hover {
+        background-color: #df3939;
+        color: #FFFFFF;
+    }
+}

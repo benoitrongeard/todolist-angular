@@ -16,7 +16,6 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted: boolean = false;
   loading: boolean = false;
-  errors: boolean = false;
   returnUrl: string;
 
   constructor(
@@ -50,6 +49,7 @@ export class LoginComponent implements OnInit {
 
     // Stop here if form is invalid
     if (this.loginForm.invalid) {
+      this.loading = false;
       return;
     }
 
@@ -63,7 +63,6 @@ export class LoginComponent implements OnInit {
         error => {
           let errors = this.alert.decodeError(error);
           this.alert.showError(errors);
-          this.errors = true;
           this.loading = false;
           this.loginForm.controls['password'].setValue("");
         });

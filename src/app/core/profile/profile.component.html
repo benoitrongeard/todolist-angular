@@ -22,45 +22,65 @@
           <div class="columns justify-center">
             <div class="column is-6">
               <div class="content text-right">
-
-                <div class="field is-horizontal">
-                  <div class="field-label is-normal">
-                    <label class="label">Name</label>
-                  </div>
-                  <div class="field-body">
-                    <div class="field">
-                      <div class="control">
-                        <input class="input" type="text" placeholder="Name">
+                <form [formGroup]="userForm">
+                  <div class="field is-horizontal">
+                    <div class="field-label is-normal text-left">
+                      <label class="label">Name</label>
+                    </div>
+                    <div class="field-body">
+                      <div class="field">
+                        <div class="control">
+                          <input class="input" placeholder="Name" type="text" formControlName="name" required [ngClass]="{ 'is-danger': submitted && (userForm.controls.name.errors || errors) }">
+                          <div *ngIf="submitted && userForm.controls.name.errors" class="invalid-feedback">
+                            <div *ngIf="userForm.controls.name.errors.required">Name is required</div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-            
-                <div class="field is-horizontal">
-                  <div class="field-label is-normal">
-                    <label class="label">Email</label>
-                  </div>
-                  <div class="field-body">
-                    <div class="field">
-                      <div class="control">
-                        <input class="input" type="text" placeholder="Email">
+
+                  <div class="field is-horizontal">
+                    <div class="field-label is-normal text-left">
+                      <label class="label">Email</label>
+                    </div>
+                    <div class="field-body">
+                      <div class="field">
+                        <div class="control">
+                          <input class="input" type="email" placeholder="Email" formControlName="email" required [ngClass]="{ 'is-danger': submitted && (userForm.controls.email.errors || errors) }">
+                          <div *ngIf="submitted && userForm.controls.email.errors" class="invalid-feedback">
+                            <div *ngIf="userForm.controls.email.errors.required">Email is required</div>
+                          </div>
+                        </div>
                       </div>
-                      <p class="help is-danger">
-                      </p>
                     </div>
                   </div>
-                </div>
 
-                <a class="button td-button">Update</a>
-
+                  <button class="button is-block td-button" [disabled]="loading" (click)="updateUser()">Update</button>
+                </form>
               </div>
+            </div>
+          </div>
+        </div>
+
+        <header class="card-header td-profile-card-header">
+          <p class="card-header-title td-card-title">
+            Delete your account
+          </p>
+        </header>
+        <div class="card-content td-card-content">
+          <div class="columns justify-center">
+            <div class="column is-12 no-padding">
+              <div class="content">
+                <p>Once you delete your account, there is no going back. Please be certain.</p>
+              </div>
+              <button class="button is-block td-button td-danger" [disabled]="loading" (click)="confirmDelete()">Delete your account</button>
             </div>
           </div>
         </div>
       </div>
 
       <div class="card" *ngSwitchCase="'security'">
-        <p>Bonjour</p>
+        
       </div>
     </div>
   </div>

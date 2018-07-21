@@ -62,8 +62,22 @@ export class AuthService {
       }));
   }
 
+  updateUser(user: User) {
+    return this.http.put<any>(environment.api + 'users/' + user.id, user)
+      .pipe(map(user => {
+        return new User(user.data);
+      }));
+  }
+
+  deleteUserAccount(user: User) {
+    return this.http.delete<any>(environment.api + 'users/' + user.id);
+  }
+
   getConnectedUser() {
-    return this.http.get<User>(environment.api + 'auth/me');
+    return this.http.get<any>(environment.api + 'auth/me')
+      .pipe(map(user => {
+        return new User(user.data);
+      }));
   }
 
   alreadyConnected() {

@@ -16,6 +16,7 @@
                   type="email" placeholder="Your Name" autofocus="" required>
                 <div *ngIf="submitted && registerForm.controls.name.errors" class="invalid-feedback">
                   <div *ngIf="registerForm.controls.name.errors.required">Username is required</div>
+                  <div *ngIf="registerForm.controls.name.errors.api_error">{{registerForm.controls.name.errors.api_error}}</div>
                 </div>
               </div>
             </div>
@@ -26,6 +27,7 @@
                   type="email" placeholder="Your Email" autofocus="" required>
                 <div *ngIf="submitted && registerForm.controls.email.errors" class="invalid-feedback">
                   <div *ngIf="registerForm.controls.email.errors.required">Email is required</div>
+                  <div *ngIf="registerForm.controls.email.errors.api_error">{{registerForm.controls.email.errors.api_error}}</div>
                 </div>
               </div>
             </div>
@@ -36,6 +38,7 @@
                   type="password" placeholder="Your Password" required>
                 <div *ngIf="submitted && registerForm.controls.password.errors" class="invalid-feedback">
                   <div *ngIf="registerForm.controls.password.errors.required">Password is required</div>
+                  <div *ngIf="registerForm.controls.password.errors.api_error">{{registerForm.controls.password.errors.api_error}}</div>
                 </div>
               </div>
             </div>
@@ -46,6 +49,7 @@
                   formControlName="password_confirmation" type="password" placeholder="Password confirmation" required>
                 <div *ngIf="submitted && registerForm.controls.password_confirmation.errors" class="invalid-feedback">
                   <div *ngIf="registerForm.controls.password_confirmation.errors.required">Password confirmation is required</div>
+                  <div *ngIf="registerForm.controls.password_confirmation.errors.api_error">{{registerForm.controls.password_confirmation.errors.api_error}}</div>
                 </div>
               </div>
             </div>

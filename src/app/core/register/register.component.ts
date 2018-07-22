@@ -56,7 +56,7 @@ export class RegisterComponent implements OnInit {
           this.alert.showSuccess("You are now registered and connected");
         },
         error => {
-          let errors = this.alert.decodeError(error);
+          let errors = this.alert.decodeError(error, this.registerForm);
           this.alert.showError(errors);
           this.errors = true;
           this.loading = false;

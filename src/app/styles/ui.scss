@@ -7,6 +7,11 @@ html, body {
     background-color: $primary !important;
 }
 
+//Alert
+.alert-error-msg {
+    color: black;
+}
+
 //Button
 .td-button {
     border-color: $primary;
@@ -30,5 +35,17 @@ html, body {
     &:hover {
         background-color: #df3939;
         color: #FFFFFF;
+    }
+}
+
+//Input
+.td-field-label {
+    @media screen and (max-width: 768px) {
+        text-align: left;
+    }
+}
+.td-field-body {
+    @media screen and (min-width: 769px) {
+        flex-grow: 3;
     }
 }

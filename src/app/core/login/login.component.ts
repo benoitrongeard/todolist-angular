@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
           this.alert.showSuccess("You are now connected");
         },
         error => {
-          let errors = this.alert.decodeError(error);
+          let errors = this.alert.decodeError(error, this.loginForm);
           this.alert.showError(errors);
           this.loading = false;
           this.loginForm.controls['password'].setValue("");

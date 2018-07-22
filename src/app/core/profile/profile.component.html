@@ -20,42 +20,43 @@
         </header>
         <div class="card-content td-card-content">
           <div class="columns justify-center">
-            <div class="column is-6">
+            <div class="column is-12">
               <div class="content text-right">
-                <form [formGroup]="userForm">
-                  <div class="field is-horizontal">
-                    <div class="field-label is-normal text-left">
+                <form [formGroup]="userProfileForm">
+                  <div class="field is-horizontal align-center">
+                    <div class="field-label is-normal td-field-label">
                       <label class="label">Name</label>
                     </div>
-                    <div class="field-body">
+                    <div class="field-body td-field-body">
                       <div class="field">
                         <div class="control">
-                          <input class="input" placeholder="Name" type="text" formControlName="name" required [ngClass]="{ 'is-danger': submitted && (userForm.controls.name.errors || errors) }">
-                          <div *ngIf="submitted && userForm.controls.name.errors" class="invalid-feedback">
-                            <div *ngIf="userForm.controls.name.errors.required">Name is required</div>
+                          <input class="input" placeholder="Name" type="text" formControlName="name" required [ngClass]="{ 'is-danger': submitted && (userProfileForm.controls.name.errors || errors) }">
+                          <div *ngIf="submitted && userProfileForm.controls.name.errors" class="invalid-feedback">
+                            <div *ngIf="userProfileForm.controls.name.errors.required">Name is required</div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  <div class="field is-horizontal">
-                    <div class="field-label is-normal text-left">
+                  <div class="field is-horizontal align-center">
+                    <div class="field-label is-normal td-field-label">
                       <label class="label">Email</label>
                     </div>
-                    <div class="field-body">
+                    <div class="field-body td-field-body">
                       <div class="field">
                         <div class="control">
-                          <input class="input" type="email" placeholder="Email" formControlName="email" required [ngClass]="{ 'is-danger': submitted && (userForm.controls.email.errors || errors) }">
-                          <div *ngIf="submitted && userForm.controls.email.errors" class="invalid-feedback">
-                            <div *ngIf="userForm.controls.email.errors.required">Email is required</div>
+                          <input class="input" type="email" placeholder="Email" formControlName="email" required [ngClass]="{ 'is-danger': submitted && (userProfileForm.controls.email.errors || errors) }">
+                          <div *ngIf="submitted && userProfileForm.controls.email.errors" class="invalid-feedback">
+                            <div *ngIf="userProfileForm.controls.email.errors.required">Email is required</div>
+                            <div *ngIf="userProfileForm.controls.email.errors.api_error">{{userProfileForm.controls.email.errors.api_error}}</div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  <button class="button is-block td-button" [disabled]="loading" (click)="updateUser()">Update</button>
+                  <button class="button td-button" [disabled]="loading" (click)="updateUserProfil()">Update</button>
                 </form>
               </div>
             </div>
@@ -80,7 +81,73 @@
       </div>
 
       <div class="card" *ngSwitchCase="'security'">
+        <header class="card-header td-profile-card-header">
+          <p class="card-header-title td-card-title">
+            Update your password
+          </p>
+        </header>
+        <div class="card-content td-card-content">
+          <div class="columns justify-center">
+            <div class="column is-12">
+              <div class="content text-right">
+                <form [formGroup]="userSecurityForm">
+                  <div class="field is-horizontal align-center">
+                    <div class="field-label is-normal td-field-label">
+                      <label class="label">Current password</label>
+                    </div>
+                    <div class="field-body td-field-body">
+                      <div class="field">
+                        <div class="control">
+                          <input class="input" placeholder="Your current password" type="password" formControlName="current_password" required [ngClass]="{ 'is-danger': submitted && (userSecurityForm.controls.current_password.errors || errors) }">
+                          <div *ngIf="submitted && userSecurityForm.controls.current_password.errors" class="invalid-feedback">
+                            <div *ngIf="userSecurityForm.controls.current_password.errors.required">Password is required</div>
+                            <div *ngIf="userSecurityForm.controls.current_password.errors.api_error">{{userSecurityForm.controls.current_password.errors.api_error}}</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
         
+                  <div class="field is-horizontal align-center">
+                    <div class="field-label is-normal td-field-label">
+                      <label class="label">New password</label>
+                    </div>
+                    <div class="field-body td-field-body">
+                      <div class="field">
+                        <div class="control">
+                          <input class="input" type="password" placeholder="Your new password" formControlName="password" required [ngClass]="{ 'is-danger': submitted && (userSecurityForm.controls.password.errors || errors) }">
+                          <div *ngIf="submitted && userSecurityForm.controls.password.errors" class="invalid-feedback">
+                            <div *ngIf="userSecurityForm.controls.password.errors.required">Email is required</div>
+                            <div *ngIf="userSecurityForm.controls.password.errors.api_error">{{userSecurityForm.controls.password.errors.api_error}}</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="field is-horizontal align-center">
+                    <div class="field-label is-normal td-field-label">
+                      <label class="label">New password confirmation</label>
+                    </div>
+                    <div class="field-body td-field-body">
+                      <div class="field">
+                        <div class="control">
+                          <input class="input" type="password" placeholder="Your new password confirmation" formControlName="password_confirmation" required [ngClass]="{ 'is-danger': submitted && (userSecurityForm.controls.password_confirmation.errors || errors) }">
+                          <div *ngIf="submitted && userSecurityForm.controls.password_confirmation.errors" class="invalid-feedback">
+                            <div *ngIf="userSecurityForm.controls.password_confirmation.errors.required">Email is required</div>
+                            <div *ngIf="userSecurityForm.controls.password_confirmation.errors.api_error">{{userSecurityForm.controls.password_confirmation.errors.api_error}}</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+        
+                  <button class="button td-button" [disabled]="loading" (click)="updateUserSecurity()">Update</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

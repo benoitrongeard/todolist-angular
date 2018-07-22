@@ -66,7 +66,7 @@ export class AlertService {
     let config = {
       color: 'red',
       icon: 'ico-error',
-      title: 'Error',
+      title: 'Errors',
       message: errors, 
     }
 
@@ -90,15 +90,28 @@ export class AlertService {
     this.iziToast.show(this.toasterConfig);
   }
 
-  decodeError(httpErrors): Object {
+  decodeError(httpErrors, formbuilder): Object {
     let errorObject = httpErrors.error;
-    let errorMsg = "";
+    let errors = [];
 
     for (let error in errorObject.errors) {
       for (let listErrorMsg in errorObject.errors[error]) {
-        errorMsg = errorObject.errors[error][listErrorMsg];
+        errors.push(errorObject.errors[error][listErrorMsg]);
+        formbuilder.controls[error].setErrors({ 'api_error': errorObject.errors[error][listErrorMsg] });
       }
     }
+
+    let errorMsg = `
+      <div>
+    `;
+
+    for( let error in errors) {
+      errorMsg += "<li class='alert-error-msg'>" + errors[error] + "</li>";
+    }
+
+    errorMsg += `
+      </div>
+    `;
 
     return errorMsg;
   }

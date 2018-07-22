@@ -12,7 +12,8 @@ import { AlertService } from 'src/app/core/alert/alert.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  private userForm: FormGroup;
+  private userProfileForm: FormGroup;
+  private userSecurityForm: FormGroup;
   private user: User;
   private submitted: boolean = false;
   private loading: boolean = false;
@@ -28,24 +29,31 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.user = this.route.snapshot.data.user;
 
-    this.userForm = this.formBuilder.group({
+    this.userProfileForm = this.formBuilder.group({
       email: [this.user.email, Validators.required],
       name: [this.user.name, Validators.required],
       id: [this.user.id]
     });
+
+    this.userSecurityForm = this.formBuilder.group({
+      current_password: ['', Validators.required],
+      password: ['', Validators.required],
+      password_confirmation: ['', Validators.required],
+      id: [this.user.id]
+    });
   }
 
-  updateUser() {
+  updateUserProfil() {
     this.submitted = true;
     this.loading = true;
 
     // Stop here if form is invalid
-    if (this.userForm.invalid) {
+    if (this.userProfileForm.invalid) {
       this.loading = false;
       return;
     }
 
-    this.auth.updateUser(this.userForm.value)
+    this.auth.updateUser(this.userProfileForm.value)
       .pipe(first())
       .subscribe(
         data => {
@@ -54,7 +62,36 @@ export class ProfileComponent implements OnInit {
         },
         error => {
           this.loading = false;
-          let errors = this.alert.decodeError(error);
+          let errors = this.alert.decodeError(error, this.userProfileForm);
+          this.alert.showError(errors);
+          this.loading = false;
+        });
+  }
+
+  updateUserSecurity() {
+    this.submitted = true;
+    this.loading = true;
+    
+    // Stop here if form is invalid
+    if (this.userSecurityForm.invalid) {
+      this.loading = false;
+      return;
+    }
+
+    this.auth.updateUser(this.userSecurityForm.value)
+      .pipe(first())
+      .subscribe(
+        data => {
+          this.loading = false;
+          this.submitted = false;
+          this.alert.showSuccess("Update completed");
+          this.userSecurityForm.controls['current_password'].setValue("");
+          this.userSecurityForm.controls['password'].setValue("");
+          this.userSecurityForm.controls['password_confirmation'].setValue("");
+        },
+        error => {
+          this.loading = false;
+          let errors = this.alert.decodeError(error, this.userSecurityForm);
           this.alert.showError(errors);
           this.loading = false;
         });
@@ -69,7 +106,7 @@ export class ProfileComponent implements OnInit {
   deleteUserAccount() {
     this.submitted = true;
     this.loading = true; 
-    this.auth.deleteUserAccount(this.userForm.value)
+    this.auth.deleteUserAccount(this.userProfileForm.value)
       .pipe(first())
       .subscribe(
         data => {
@@ -79,7 +116,7 @@ export class ProfileComponent implements OnInit {
         },
         error => {
           this.loading = false;
-          let errors = this.alert.decodeError(error);
+          let errors = this.alert.decodeError(error, this.userProfileForm);
           this.alert.showError(errors);
           this.loading = false;
         });

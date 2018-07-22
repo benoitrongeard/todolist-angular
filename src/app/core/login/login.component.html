@@ -15,6 +15,7 @@
                 <input class="input is-large" [ngClass]="{ 'is-danger': submitted && (loginForm.controls.email.errors || errors) }" formControlName="email" type="email" placeholder="Your Email" autofocus="" required>
                 <div *ngIf="submitted && loginForm.controls.email.errors" class="invalid-feedback">
                   <div *ngIf="loginForm.controls.email.errors.required">Email is required</div>
+                  <div *ngIf="loginForm.controls.email.errors.api_error">{{loginForm.controls.email.errors.api_error}}</div>
                 </div>
               </div>
             </div>
@@ -24,6 +25,7 @@
                 <input class="input is-large" [ngClass]="{ 'is-danger': submitted && (loginForm.controls.password.errors || errors) }" formControlName="password" type="password" placeholder="Your Password" required>
                 <div *ngIf="submitted && loginForm.controls.password.errors" class="invalid-feedback">
                   <div *ngIf="loginForm.controls.password.errors.required">Password is required</div>
+                  <div *ngIf="loginForm.controls.password.errors.api_error">{{loginForm.controls.password.errors.api_error}}</div>
                 </div>
               </div>
             </div>

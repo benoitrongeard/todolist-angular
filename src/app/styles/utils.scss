@@ -26,7 +26,19 @@
     border-color: #df3939;
 }
 
+.full-width {
+    width: 100%;
+}
+
+.full-height {
+    height: 100%;
+}
+
 //Position element
+.flex {
+    display: flex;
+}
+
 .text-right {
     text-align: right;
 }

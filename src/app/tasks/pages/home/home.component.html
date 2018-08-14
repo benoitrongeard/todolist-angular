@@ -1,5 +1,29 @@
 <td-navbar></td-navbar>
-<p>
-  Homme page !!
-</p>
-<router-outlet></router-outlet>
+
+<div class="container td-container">
+  <div class="columns no-margin td-add-container">
+    <div class="column is-12-mobile is-9 td-add-container-field no-padding">
+      <div class="field full-width full-height">
+        <div class="control full-width full-height">
+          <input class="input full-height" type="text" placeholder="What do you have to do ?">
+        </div>
+      </div>
+    </div>
+    <div class="column is-12-mobile is-2 td-add-container-date no-padding" (click)="picker.open()">
+        <div class="column is-2 is-2-mobile no-padding justify-center align-center flex">
+          <fa-icon [icon]="faCalendar" class="td-icon-primary"></fa-icon>
+        </div>
+        <div class="column is-10 is-10-mobile">
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker" disabled>
+            <mat-datepicker touchUi #picker disabled="false"></mat-datepicker>
+          </mat-form-field>
+        </div>
+    </div>
+    <div class="column is-12-mobile is-1 td-add-container-button">
+      <fa-icon [icon]="faPlus" class="td-icon"></fa-icon>
+    </div>
+  </div>
+  
+  <router-outlet></router-outlet>
+</div>

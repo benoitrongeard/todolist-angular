@@ -1,6 +1,15 @@
+@import "colors.scss";
+
 html, body {
     background-color: #fafafa;
+    height: 100%;
 }
+
+body { 
+    margin: 0; 
+    font-family: 'Roboto', sans-serif; 
+}
+
 
 //Login checkbox
 .pretty input:checked ~ .state.p-primary label::after, .pretty.p-toggle .state.p-primary label::after {
@@ -48,4 +57,30 @@ html, body {
     @media screen and (min-width: 769px) {
         flex-grow: 3;
     }
+}
+
+//Icon
+.td-icon {
+    font-size: 1.3rem;
+
+    path {
+        color: #FFFFFF;
+    }
+}
+
+.td-icon-primary {
+    @extend .td-icon;
+    
+    path {
+        color: $primary;
+    }
+}
+
+//Datepicker
+.mat-form-field {
+    display: block !important;
+}
+
+.mat-calendar-body-selected {
+    background-color: $primary !important;
 }

@@ -1,0 +1,63 @@
+@import "../../../styles/colors.scss";
+
+.td-container {
+    padding: 3rem 0;
+
+    .td-add-container {
+        box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.16);
+    }
+
+    .td-add-container-field {
+        background-color: #FFFFFF;
+        height: 3rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        input {
+            border-color: transparent;
+            box-shadow: none;
+            border-radius: 0px;
+            color: $primary; 
+
+            &:hover {
+                border-color: $primary;
+            }
+
+            &::placeholder {
+                color: $primary;
+                font-weight: bold;
+                font-size: 1.2rem;
+                opacity: 1;
+            }
+
+            &::-ms-input-placeholder {
+                color: $primary;
+            }
+
+            &::-ms-input-placeholder {
+                color: $primary;
+            }
+
+        }
+    }
+
+    .td-add-container-date {
+        @extend .td-add-container-field;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .td-add-container-button {
+        @extend .td-add-container-field;
+        background-color: $primary;
+
+        &:hover {
+            background-color: #36a6d2;
+            cursor: pointer;
+            transition: ease-in-out;
+        }
+    }
+}

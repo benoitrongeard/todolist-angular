@@ -98,8 +98,8 @@
                     <div class="field-body td-field-body">
                       <div class="field">
                         <div class="control">
-                          <input class="input" placeholder="Your current password" type="password" formControlName="current_password" required [ngClass]="{ 'is-danger': submitted && (userSecurityForm.controls.current_password.errors || errors) }">
-                          <div *ngIf="submitted && userSecurityForm.controls.current_password.errors" class="invalid-feedback">
+                          <input class="input" placeholder="Your current password" type="password" formControlName="current_password" required [ngClass]="{ 'is-danger': securitySubmitted && (userSecurityForm.controls.current_password.errors || errors) }">
+                          <div *ngIf="securitySubmitted && userSecurityForm.controls.current_password.errors" class="invalid-feedback">
                             <div *ngIf="userSecurityForm.controls.current_password.errors.required">Password is required</div>
                             <div *ngIf="userSecurityForm.controls.current_password.errors.api_error">{{userSecurityForm.controls.current_password.errors.api_error}}</div>
                           </div>
@@ -115,8 +115,8 @@
                     <div class="field-body td-field-body">
                       <div class="field">
                         <div class="control">
-                          <input class="input" type="password" placeholder="Your new password" formControlName="password" required [ngClass]="{ 'is-danger': submitted && (userSecurityForm.controls.password.errors || errors) }">
-                          <div *ngIf="submitted && userSecurityForm.controls.password.errors" class="invalid-feedback">
+                          <input class="input" type="password" placeholder="Your new password" formControlName="password" required [ngClass]="{ 'is-danger': securitySubmitted && (userSecurityForm.controls.password.errors || errors) }">
+                          <div *ngIf="securitySubmitted && userSecurityForm.controls.password.errors" class="invalid-feedback">
                             <div *ngIf="userSecurityForm.controls.password.errors.required">Email is required</div>
                             <div *ngIf="userSecurityForm.controls.password.errors.api_error">{{userSecurityForm.controls.password.errors.api_error}}</div>
                           </div>
@@ -132,8 +132,8 @@
                     <div class="field-body td-field-body">
                       <div class="field">
                         <div class="control">
-                          <input class="input" type="password" placeholder="Your new password confirmation" formControlName="password_confirmation" required [ngClass]="{ 'is-danger': submitted && (userSecurityForm.controls.password_confirmation.errors || errors) }">
-                          <div *ngIf="submitted && userSecurityForm.controls.password_confirmation.errors" class="invalid-feedback">
+                          <input class="input" type="password" placeholder="Your new password confirmation" formControlName="password_confirmation" required [ngClass]="{ 'is-danger': securitySubmitted && (userSecurityForm.controls.password_confirmation.errors || errors) }">
+                          <div *ngIf="securitySubmitted && userSecurityForm.controls.password_confirmation.errors" class="invalid-feedback">
                             <div *ngIf="userSecurityForm.controls.password_confirmation.errors.required">Email is required</div>
                             <div *ngIf="userSecurityForm.controls.password_confirmation.errors.api_error">{{userSecurityForm.controls.password_confirmation.errors.api_error}}</div>
                           </div>

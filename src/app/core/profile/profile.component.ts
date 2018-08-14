@@ -16,6 +16,7 @@ export class ProfileComponent implements OnInit {
   private userSecurityForm: FormGroup;
   private user: User;
   private submitted: boolean = false;
+  private securitySubmitted: boolean = false;
   private loading: boolean = false;
   tab: string = "profile";
 
@@ -58,6 +59,7 @@ export class ProfileComponent implements OnInit {
       .subscribe(
         data => {
           this.loading = false;
+          this.submitted = false;
           this.alert.showSuccess("Update completed");
         },
         error => {
@@ -69,7 +71,7 @@ export class ProfileComponent implements OnInit {
   }
 
   updateUserSecurity() {
-    this.submitted = true;
+    this.securitySubmitted = true;
     this.loading = true;
     
     // Stop here if form is invalid
@@ -83,7 +85,7 @@ export class ProfileComponent implements OnInit {
       .subscribe(
         data => {
           this.loading = false;
-          this.submitted = false;
+          this.securitySubmitted = false;
           this.alert.showSuccess("Update completed");
           this.userSecurityForm.controls['current_password'].setValue("");
           this.userSecurityForm.controls['password'].setValue("");

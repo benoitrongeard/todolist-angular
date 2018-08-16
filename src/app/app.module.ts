@@ -13,6 +13,7 @@ import { RegisterComponent } from './core/register/register.component';
 import { ProfileComponent } from './core/profile/profile.component';
 
 import { JwtInterceptor } from './core/auth/jwt.interceptor';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,11 @@ import { JwtInterceptor } from './core/auth/jwt.interceptor';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
-      multi: true
+      multi: true,
+    },
+    { 
+      provide: MAT_DATE_LOCALE, 
+      useValue: 'fr-Fr' 
     }
   ],
   bootstrap: [AppComponent]

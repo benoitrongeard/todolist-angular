@@ -84,3 +84,8 @@ body {
 .mat-calendar-body-selected {
     background-color: $primary !important;
 }
+
+.mat-form-field.mat-focused .mat-form-field-ripple {
+    background-color: transparent !important;
+    transition: none !important;
+}

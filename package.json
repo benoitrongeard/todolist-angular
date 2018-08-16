@@ -29,6 +29,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.2.0",
     "bulma": "^0.7.1",
     "core-js": "^2.5.4",
+    "hammerjs": "^2.0.8",
     "hoek": "^5.0.3",
     "ng2-izitoast": "^2.0.0",
     "pretty-checkbox": "^3.0.3",

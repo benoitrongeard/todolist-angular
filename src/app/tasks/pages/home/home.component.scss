@@ -52,12 +52,21 @@
 
     .td-add-container-button {
         @extend .td-add-container-field;
-        background-color: $primary;
+        padding: 0;
 
-        &:hover {
-            background-color: #36a6d2;
-            cursor: pointer;
-            transition: ease-in-out;
+        button {
+            background-color: $primary;
+            border: 0px solid transparent;
+            border-radius: 0;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        
+            &:hover {
+                background-color: #36a6d2;
+                cursor: pointer;
+            }
         }
     }
 }

@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  private activeMobileMenu: boolean = false;
+  public activeMobileMenu: boolean = false;
 
   constructor(private auth: AuthService, private router: Router) { }
 

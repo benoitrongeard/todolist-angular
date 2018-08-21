@@ -15,10 +15,10 @@ import { Task } from 'src/app/shared/models/task';
 export class HomeComponent implements OnInit {
   faPlus = faPlus;
   faCalendar = faCalendarAlt;
-  private taskObj: Task = new Task({'title': '', 'due_at': null, 'is_completed': false});
-  private addTaskForm: FormGroup;
+  addTaskForm: FormGroup;
+  loading: boolean = false;
+  private taskObj: Task = new Task({ 'title': '', 'due_at': null, 'is_completed': false });
   private submitted: boolean = false;
-  private loading: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private taskService: TaskService, private alert: AlertService) { }
 

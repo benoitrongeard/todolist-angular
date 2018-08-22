@@ -33,13 +33,13 @@
   <div class="tabs is-fullwidth td-home-tabs">
     <ul>
       <li [ngClass]="{'is-active': tab == 'active'}">
-        <a (click)="toggleTab('active')">Active ({{tasks | countTask:"active"}})</a>
+        <a (click)="toggleTab('active')">Active ({{activeTask}})</a>
       </li>
       <li [ngClass]="{'is-active': tab == 'all'}">
-        <a (click)="toggleTab('all')">All ({{tasks | countTask:"all"}})</a>
+        <a (click)="toggleTab('all')">All ({{activeTask + completedTask}})</a>
       </li>
       <li [ngClass]="{'is-active': tab == 'completed'}">
-        <a (click)="toggleTab('completed')">Completed ({{tasks | countTask:"completed"}})</a>
+        <a (click)="toggleTab('completed')">Completed ({{completedTask}})</a>
       </li>
     </ul>
   </div>

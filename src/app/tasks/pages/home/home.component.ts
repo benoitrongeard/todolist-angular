@@ -20,6 +20,8 @@ export class HomeComponent implements OnInit {
   loading: boolean = false;
   tab: string = "active";
   tasks: Task [];
+  activeTask = 0;
+  completedTask = 0;
   private taskObj: Task = new Task({ 'title': '', 'due_at': null, 'is_completed': false });
   private submitted: boolean = false;
 
@@ -30,6 +32,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.tasks = this.route.snapshot.data.tasks;
+
+    this.countTask();
     
     this.addTaskForm = this.formBuilder.group({
       title: [this.taskObj.title, Validators.required],
@@ -59,6 +63,8 @@ export class HomeComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
+          this.tasks.push(data);
+          this.countTask();
           this.loading = false;
           this.submitted = false;
           this.alert.showSuccess("Task added");
@@ -76,4 +82,16 @@ export class HomeComponent implements OnInit {
     this.tab = tabSelected;
   }
 
+  countTask() {
+    this.activeTask = 0;
+    this.completedTask = 0;
+
+    for (let task of this.tasks) {
+      if (task.is_completed) {
+        this.completedTask++;
+      } else {
+        this.activeTask++;
+      }
+    }
+  }
 }

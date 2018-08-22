@@ -17,4 +17,18 @@ export class TaskService {
         return new Task(task.data);
       }));
   }
+
+  getTasks() {
+    return this.http.get<any>(environment.api + 'tasks')
+      .pipe(map(tasks => {
+        let tasksArray: Task[] = [];
+
+        for (let taskProps of tasks.data) {
+          let taskObj: Task = new Task(taskProps);
+          tasksArray.push(taskObj);
+        }
+
+        return tasksArray;
+      }));
+  }
 }

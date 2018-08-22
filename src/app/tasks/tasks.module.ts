@@ -7,6 +7,8 @@ import { SharedModule } from './../shared/shared.module';
 
 import { HomeComponent } from './pages/home/home.component';
 import { ActiveComponent } from './pages/active/active.component';
+import { TaskComponent } from './component/task/task.component';
+import { CountTaskPipe } from './pipes/count-task.pipe';
 
 @NgModule({
   imports: [
@@ -15,6 +17,6 @@ import { ActiveComponent } from './pages/active/active.component';
     ReactiveFormsModule,
     SharedModule,
   ],
-  declarations: [ActiveComponent, HomeComponent]
+  declarations: [ActiveComponent, HomeComponent, TaskComponent, CountTaskPipe]
 })
 export class TasksModule { }

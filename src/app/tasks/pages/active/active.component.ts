@@ -1,4 +1,6 @@
+import { Task } from './../../../shared/models/task';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'td-active',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ActiveComponent implements OnInit {
 
-  constructor() { }
+  tasks: Task [];
+
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.tasks = this.route.parent.snapshot.data.tasks;
   }
 
 }

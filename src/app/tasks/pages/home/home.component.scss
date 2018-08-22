@@ -1,9 +1,9 @@
 @import "../../../styles/colors.scss";
 
 .td-container {
-    padding: 3rem 0;
 
     .td-add-container {
+        margin: 3rem 0;
         box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.16);
     }
 
@@ -66,6 +66,28 @@
             &:hover {
                 background-color: #36a6d2;
                 cursor: pointer;
+            }
+        }
+    }
+
+    .td-home-tabs {
+        ul {
+            background-color: #FFFFFF;
+            border-bottom-color: $primary;
+            border-bottom-width: 2px;
+
+            a {
+                font-weight: bold;
+                color: $primary;
+                border-bottom: 0px solid transparent;
+            }
+        }
+
+        li.is-active {
+            background-color: $primary;
+            
+            a {
+                color: #FFFFFF;
             }
         }
     }

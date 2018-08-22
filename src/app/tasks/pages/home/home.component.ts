@@ -6,6 +6,7 @@ import { AlertService } from 'src/app/core/alert/alert.service';
 import { TaskService } from 'src/app/tasks/services/task.service';
 import { first } from 'rxjs/operators';
 import { Task } from 'src/app/shared/models/task';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'td-home',
@@ -17,12 +18,19 @@ export class HomeComponent implements OnInit {
   faCalendar = faCalendarAlt;
   addTaskForm: FormGroup;
   loading: boolean = false;
+  tab: string = "active";
+  tasks: Task [];
   private taskObj: Task = new Task({ 'title': '', 'due_at': null, 'is_completed': false });
   private submitted: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private taskService: TaskService, private alert: AlertService) { }
+  constructor(private formBuilder: FormBuilder, 
+    private taskService: TaskService, 
+    private alert: AlertService,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.tasks = this.route.snapshot.data.tasks;
+    
     this.addTaskForm = this.formBuilder.group({
       title: [this.taskObj.title, Validators.required],
       due_at: [this.taskObj.due_at]
@@ -62,6 +70,10 @@ export class HomeComponent implements OnInit {
           this.alert.showError(errors);
           this.loading = false;
         });
+  }
+
+  toggleTab(tabSelected: string) {
+    this.tab = tabSelected;
   }
 
 }

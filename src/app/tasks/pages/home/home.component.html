@@ -29,6 +29,20 @@
       </div>
     </div>
   </form>
+
+  <div class="tabs is-fullwidth td-home-tabs">
+    <ul>
+      <li [ngClass]="{'is-active': tab == 'active'}">
+        <a (click)="toggleTab('active')">Active ({{tasks | countTask:"active"}})</a>
+      </li>
+      <li [ngClass]="{'is-active': tab == 'all'}">
+        <a (click)="toggleTab('all')">All ({{tasks | countTask:"all"}})</a>
+      </li>
+      <li [ngClass]="{'is-active': tab == 'completed'}">
+        <a (click)="toggleTab('completed')">Completed ({{tasks | countTask:"completed"}})</a>
+      </li>
+    </ul>
+  </div>
   
   <router-outlet></router-outlet>
 </div>

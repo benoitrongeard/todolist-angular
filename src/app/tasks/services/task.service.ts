@@ -3,13 +3,23 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { map } from 'rxjs/operators';
 import { Task } from './../../shared/models/task';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
+  private tasks = new Subject<Task []>();
 
   constructor(private http: HttpClient) { }
+
+  updateTasksData(newTasks: Task []) {
+    this.tasks.next(newTasks);
+  }
+
+  getTasksData() {
+    return this.tasks.asObservable();
+  }
 
   addTask(task: Task) {
     return this.http.post<any>(environment.api + 'tasks', task)

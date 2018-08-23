@@ -32,8 +32,13 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.tasks = this.route.snapshot.data.tasks;
-
+    this.taskService.updateTasksData(this.tasks);
     this.countTask();
+
+    this.taskService.getTasksData().subscribe((tasks) => {
+      this.tasks = tasks;
+      this.countTask();
+    });
     
     this.addTaskForm = this.formBuilder.group({
       title: [this.taskObj.title, Validators.required],
@@ -65,6 +70,7 @@ export class HomeComponent implements OnInit {
         data => {
           this.tasks.push(data);
           this.countTask();
+          this.taskService.updateTasksData(this.tasks);
           this.loading = false;
           this.submitted = false;
           this.alert.showSuccess("Task added");

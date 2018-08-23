@@ -1,4 +1,6 @@
 <div>
     Active
-    <td-task></td-task>
+    <div *ngFor="let task of tasks">
+        <td-task></td-task>
+    </div>
 </div>

@@ -1,3 +1,19 @@
-<p>
-  task works!
-</p>
+<div class="columns is-mobile no-margin td-task-container">
+  <div class="column is-5 is-7-desktop">
+    <div class="field full-width full-height">
+      <div class="control full-width full-height td-task-title">
+        <p>Nom de la tâche</p>
+      </div>
+    </div>
+  </div>
+  <div class="column is-5 is-4-desktop no-padding td-task-date">
+    <span>07 July 2018</span>
+    <span>pendule</span>
+    <span>in 3 days</span>
+  </div>
+  <div class="column is-2 is-1-desktop td-task-button">
+    <button class="button">
+      <fa-icon [icon]="faCheck" class="td-icon"></fa-icon>
+    </button>
+  </div>
+</div>

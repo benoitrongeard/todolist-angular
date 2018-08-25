@@ -1,19 +1,19 @@
 <div class="columns is-mobile no-margin td-task-container">
-  <div class="column is-5 is-7-desktop">
+  <div class="column is-5-mobile is-6-tablet is-7-desktop">
     <div class="field full-width full-height">
       <div class="control full-width full-height td-task-title">
-        <p>Nom de la tâche</p>
+        <p>{{task.title}}</p>
       </div>
     </div>
   </div>
-  <div class="column is-5 is-4-desktop no-padding td-task-date">
-    <span>07 July 2018</span>
-    <span>pendule</span>
-    <span>in 3 days</span>
+  <div class="column is-5-mobile is-5-tablet is-4-desktop no-padding td-task-date" *ngIf="task.due_at">
+    <span>{{task.dateFormated}}</span>
+    <span *ngIf="diffDate"><fa-icon [icon]="faClock" class="td-icon-task-date"></fa-icon></span>
+    <span *ngIf="diffDate">in {{diffDate}} day(s)</span>
   </div>
-  <div class="column is-2 is-1-desktop td-task-button">
-    <button class="button">
-      <fa-icon [icon]="faCheck" class="td-icon"></fa-icon>
+  <div class="column is-2-mobile is-1-tablet is-1-desktop td-task-button">
+    <button class="button" (click)="completeTask()">
+      <fa-icon [icon]="faCheck" class="td-icon-task-complete"></fa-icon>
     </button>
   </div>
 </div>

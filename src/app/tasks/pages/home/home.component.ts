@@ -80,7 +80,6 @@ export class HomeComponent implements OnInit {
           this.loading = false;
           let errors = this.alert.decodeError(error, this.addTaskForm);
           this.alert.showError(errors);
-          this.loading = false;
         });
   }
 

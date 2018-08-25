@@ -41,4 +41,11 @@ export class TaskService {
         return tasksArray;
       }));
   }
+
+  updateTask(task: Task) {
+    return this.http.put<any>(environment.api + 'tasks/' + task.id, task)
+      .pipe(map(task => {
+        return new Task(task.data);
+      }));
+  }
 }

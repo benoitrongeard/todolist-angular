@@ -1,6 +1,6 @@
 <div>
     Active
-    <div *ngFor="let task of tasks">
-        <td-task></td-task>
+    <div *ngFor="let task of activeTasks">
+        <td-task (updateTaskEvent)="updateTask($event)" [task]="task"></td-task>
     </div>
 </div>

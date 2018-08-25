@@ -17,6 +17,14 @@
 
     .td-task-date {
         text-align: center;
+
+        span {
+            display: inline-block;
+        }
+
+        span:nth-child(2) {
+            margin: 0 0.5rem;
+        }
     }
 
     .td-task-button {
@@ -26,7 +34,7 @@
         height: 100%;
 
         button {
-            background-color: $primary;
+            background-color: #FFFFFF;
             border: 0px solid transparent;
             border-radius: 0;
             padding: 0;
@@ -35,9 +43,17 @@
             height: 100%;
         
             &:hover {
-                background-color: #36a6d2;
                 cursor: pointer;
             }
+
+            &:focus:not(:active) {
+                box-shadow: none;
+            }
+        }
+
+        button.td-completed {
+            @extend button;
+            background-color: $primary;
         }
     }
 }

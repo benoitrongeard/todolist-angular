@@ -76,6 +76,23 @@ body {
     }
 }
 
+.td-icon-task-date {
+    font-size: 1rem;
+    
+    path {
+        color: rgba(0,0,0,.54);
+    }
+}
+
+.td-icon-task-complete {
+    @extend .td-icon;
+
+    path {
+        stroke: $primary;
+        stroke-width: 2.5rem;
+    }
+}
+
 //Datepicker
 .mat-form-field {
     display: block !important;

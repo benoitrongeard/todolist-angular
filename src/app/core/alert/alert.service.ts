@@ -90,14 +90,16 @@ export class AlertService {
     this.iziToast.show(this.toasterConfig);
   }
 
-  decodeError(httpErrors, formbuilder): Object {
+  decodeError(httpErrors, formbuilder = null): Object {
     let errorObject = httpErrors.error;
     let errors = [];
 
     for (let error in errorObject.errors) {
       for (let listErrorMsg in errorObject.errors[error]) {
         errors.push(errorObject.errors[error][listErrorMsg]);
-        formbuilder.controls[error].setErrors({ 'api_error': errorObject.errors[error][listErrorMsg] });
+        if (formbuilder) {
+          formbuilder.controls[error].setErrors({ 'api_error': errorObject.errors[error][listErrorMsg] });
+        }
       }
     }
 

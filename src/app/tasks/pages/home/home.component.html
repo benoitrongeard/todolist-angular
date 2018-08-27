@@ -24,7 +24,10 @@
       </div>
       <div class="column is-12-mobile is-1 td-add-container-button">
         <button class="button" [disabled]="loading" (click)="addTask()">
-          <fa-icon [icon]="faPlus" class="td-icon"></fa-icon>
+          <fa-icon *ngIf="!loading" [icon]="faPlus" class="td-icon"></fa-icon>
+          <div *ngIf="loading" class="td-loader-circle">
+            <div class="loader td-loader-primary"></div>
+          </div>
         </button>
       </div>
     </div>

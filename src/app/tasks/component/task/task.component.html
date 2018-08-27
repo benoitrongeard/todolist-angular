@@ -1,22 +1,77 @@
-<div class="columns is-mobile no-margin td-task-container">
-  <div class="column is-5-mobile is-6-tablet is-7-desktop">
-    <div class="field full-width full-height">
-      <div class="control full-width full-height td-task-title">
-        <p [ngClass]="{'td-completed': task.is_completed}">{{task.title}}</p>
+<div [ngSwitch]="mode">
+  <div *ngSwitchCase="'consult'">
+    <div class="columns is-mobile no-margin td-task-container">
+      <div [ngClass]="{
+          'is-10-mobile': !task.due_at,
+          'is-11-tablet': !task.due_at,
+          'is-11-tablet': !task.due_at,
+          'is-5-mobile': task.due_at,
+          'is-6-tablet': task.due_at,
+          'is-7-desktop': task.due_at
+        }" 
+        class="column" (click)="toggleMode('edit')">
+        <div class="field full-width full-height">
+          <div class="control full-width full-height td-task-title">
+            <p [ngClass]="{'td-completed': task.is_completed}">{{task.title}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="column is-5-mobile is-5-tablet is-4-desktop no-padding td-task-date" *ngIf="task.due_at" (click)="toggleMode('edit')">
+        <span>{{task.dateFormated}}</span>
+        <span *ngIf="diffDate"><fa-icon [icon]="faClock" class="td-icon-task-date"></fa-icon></span>
+        <span *ngIf="diffDate">in {{diffDate}} day(s)</span>
+      </div>
+      <div class="column is-2-mobile is-1-tablet is-1-desktop td-task-button">
+        <button *ngIf="!loading" class="button" (click)="completeTask()" [ngClass]="{'td-completed': task.is_completed}">
+          <fa-icon [icon]="faCheck" class="td-icon-task-complete"></fa-icon>
+        </button>
+        <div *ngIf="loading" class="td-loader-circle">
+          <div class="loader"></div>
+        </div>
       </div>
     </div>
   </div>
-  <div class="column is-5-mobile is-5-tablet is-4-desktop no-padding td-task-date" *ngIf="task.due_at">
-    <span>{{task.dateFormated}}</span>
-    <span *ngIf="diffDate"><fa-icon [icon]="faClock" class="td-icon-task-date"></fa-icon></span>
-    <span *ngIf="diffDate">in {{diffDate}} day(s)</span>
-  </div>
-  <div class="column is-2-mobile is-1-tablet is-1-desktop td-task-button">
-    <button *ngIf="!loading" class="button" (click)="completeTask()" [ngClass]="{'td-completed': task.is_completed}">
-      <fa-icon [icon]="faCheck" class="td-icon-task-complete"></fa-icon>
-    </button>
-    <div *ngIf="loading" class="td-loader-circle">
-      <div class="loader"></div>
-    </div>
+  <div *ngSwitchCase="'edit'">
+    <form [formGroup]="updateTaskForm">
+      <div class="columns no-margin td-update-container">
+        <div class="column is-12-mobile is-9 td-update-container-field no-padding">
+          <div class="field full-width full-height">
+            <div class="control full-width full-height">
+              <input class="input full-height" type="text" placeholder="What do you have to do ?" formControlName="title" required>
+            </div>
+          </div>
+        </div>
+        <div class="column is-12-mobile is-3 td-update-container-date no-padding" (click)="updateTaskPicker.open()">
+          <div class="column is-2 is-2-mobile no-padding justify-center align-center flex">
+            <fa-icon [icon]="faCalendar" class="td-icon-primary"></fa-icon>
+          </div>
+          <div class="column is-10 is-10-mobile">
+            <mat-form-field>
+              <input matInput [matDatepicker]="updateTaskPicker" disabled formControlName="due_at">
+              <mat-datepicker touchUi #updateTaskPicker disabled="false"></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex no-margin td-update-mode-container">
+        <div class="no-padding flex align-center">
+          <button class="button td-button" [disabled]="loading">Update</button>
+          <button class="button td-button td-button-transparent" (click)="toggleMode('consult')" [disabled]="loading">Cancel</button>
+        </div>
+        <div class="no-padding">
+          <button *ngIf="!loading; else elseBlock" (click)="deleteTask()" class="button td-button td-danger" [disabled]="loading">
+            Delete
+          </button>
+          <ng-template #elseBlock>
+            <button class="button td-button td-danger-fixe">
+              <div class="td-loader-circle">
+                <div class="loader loader-danger"></div>
+              </div>
+            </button>
+          </ng-template>
+        </div>
+      </div>
+    </form>
   </div>
 </div>

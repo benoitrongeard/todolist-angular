@@ -1,5 +1,5 @@
 <div>
   <div *ngFor="let task of allTasks">
-    <td-task (updateTaskEvent)="updateTask($event)" [task]="task"></td-task>
+    <td-task (deleteTaskEvent)="deleteTask($event)" (updateTaskEvent)="updateTask($event)" [task]="task"></td-task>
   </div>
 </div>

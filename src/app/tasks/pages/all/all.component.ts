@@ -26,4 +26,10 @@ export class AllComponent implements OnInit {
     this.allTasks[index] = $event;
     this.taskService.updateTasksData(this.allTasks);
   }
+
+  deleteTask($event: Task) {
+    let index = this.allTasks.indexOf($event);
+    this.allTasks.splice(index, 1);
+    this.taskService.updateTasksData(this.allTasks);
+  }
 }

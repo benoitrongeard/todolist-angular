@@ -48,4 +48,11 @@ export class TaskService {
         return new Task(task.data);
       }));
   }
+
+  deleteTask(task: Task) {
+    return this.http.delete<any>(environment.api + 'tasks/' + task.id)
+      .pipe(map(data => {
+        return true;
+      }));
+  }
 }

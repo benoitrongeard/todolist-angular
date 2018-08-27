@@ -5,6 +5,8 @@ import { first } from 'rxjs/operators';
 import { AlertService } from 'src/app/core/alert/alert.service';
 import { TaskService } from 'src/app/tasks/services/task.service';
 import { Task } from 'src/app/shared/models/task';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { faCalendarAlt } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'td-task',
@@ -14,14 +16,18 @@ import { Task } from 'src/app/shared/models/task';
 export class TaskComponent implements OnInit {
   faCheck = faCheck;
   faClock = faClock;
+  faCalendar = faCalendarAlt;
   diffDate: number = null;
   loading: boolean = false;
+  mode: string = 'consult';
+  updateTaskForm: FormGroup;
 
   @Input() task: Task;
   @Output() updateTaskEvent: EventEmitter<Task> = new EventEmitter();
+  @Output() deleteTaskEvent: EventEmitter<Task> = new EventEmitter();
 
 
-  constructor(private taskService: TaskService, private alert: AlertService) {
+  constructor(private formBuilder: FormBuilder, private taskService: TaskService, private alert: AlertService) {
    }
 
   ngOnInit() {
@@ -40,6 +46,13 @@ export class TaskComponent implements OnInit {
 
       this.task.setDateFormated(taskDate);
     }
+
+    this.updateTaskForm = this.formBuilder.group({
+      title: [this.task.title, Validators.required],
+      due_at: [this.task.due_at],
+      is_completed: [this.task.is_completed],
+      id: [this.task.id]
+    });
   }
 
   completeTask() {
@@ -75,4 +88,25 @@ export class TaskComponent implements OnInit {
         });
   }
 
+  toggleMode(mode: string) {
+    this.mode = mode;
+  }
+
+  deleteTask() {
+    this.loading = true;
+
+    this.taskService.deleteTask(this.task)
+      .pipe(first())
+      .subscribe(
+        data => {
+          this.loading = false;
+          this.deleteTaskEvent.emit(this.task);
+          this.alert.showSuccess("Task deleted");
+        },
+        error => {
+          this.loading = false;
+          let errors = this.alert.decodeError(error);
+          this.alert.showError(errors);
+        });
+  }
 }

@@ -23,7 +23,6 @@ export class HomeComponent implements OnInit {
   activeTask = 0;
   completedTask = 0;
   private taskObj: Task = new Task({ 'title': '', 'due_at': null, 'is_completed': false });
-  private submitted: boolean = false;
 
   constructor(private formBuilder: FormBuilder, 
     private taskService: TaskService, 
@@ -31,6 +30,7 @@ export class HomeComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.tab = this.route.snapshot.firstChild.url[0].path;
     this.tasks = this.route.snapshot.data.tasks;
     this.taskService.updateTasksData(this.tasks);
     this.countTask();
@@ -47,7 +47,6 @@ export class HomeComponent implements OnInit {
   }
 
   addTask() {
-    this.submitted = true;
     this.loading = true;
 
     this.taskObj = new Task(this.addTaskForm.value);
@@ -72,7 +71,6 @@ export class HomeComponent implements OnInit {
           this.countTask();
           this.taskService.updateTasksData(this.tasks);
           this.loading = false;
-          this.submitted = false;
           this.alert.showSuccess("Task added");
           this.addTaskForm.reset();
         },

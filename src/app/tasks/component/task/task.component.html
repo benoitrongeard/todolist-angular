@@ -2,7 +2,7 @@
   <div class="column is-5-mobile is-6-tablet is-7-desktop">
     <div class="field full-width full-height">
       <div class="control full-width full-height td-task-title">
-        <p>{{task.title}}</p>
+        <p [ngClass]="{'td-completed': task.is_completed}">{{task.title}}</p>
       </div>
     </div>
   </div>
@@ -12,7 +12,7 @@
     <span *ngIf="diffDate">in {{diffDate}} day(s)</span>
   </div>
   <div class="column is-2-mobile is-1-tablet is-1-desktop td-task-button">
-    <button class="button" (click)="completeTask()">
+    <button class="button" (click)="completeTask()" [ngClass]="{'td-completed': task.is_completed}">
       <fa-icon [icon]="faCheck" class="td-icon-task-complete"></fa-icon>
     </button>
   </div>

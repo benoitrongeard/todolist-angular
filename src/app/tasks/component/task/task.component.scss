@@ -13,6 +13,10 @@
             color: $primary;
             font-weight: bold;
         }
+
+        p.td-completed {
+            text-decoration: line-through;
+        }
     }
 
     .td-task-date {

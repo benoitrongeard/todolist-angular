@@ -1,3 +1,4 @@
+import { AllComponent } from './pages/all/all.component';
 import { TasksResolverService } from './services/tasks-resolver.service';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -20,6 +21,10 @@ const routes: Routes = [
             {
                 path: 'active',
                 component: ActiveComponent
+            },
+            {
+                path: 'all',
+                component: AllComponent
             }
         ]
     }

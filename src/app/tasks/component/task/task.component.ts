@@ -28,7 +28,6 @@ export class TaskComponent implements OnInit {
     if (this.task.due_at) {
       let dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
       let actualDate: any = new Date();
-      // actualDate = actualDate.toISOString('fr-CA');
       let oneDay = 24 * 60 * 60 * 1000;
 
       let taskDate: any = new Date(this.task.due_at);

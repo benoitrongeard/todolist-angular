@@ -18,11 +18,7 @@ export class Task {
     }
 
     complete() {
-        this.is_completed = true;
-    }
-
-    active() {
-        this.is_completed = false;
+        this.is_completed = !this.is_completed;
     }
 
     formatDateForApi() {

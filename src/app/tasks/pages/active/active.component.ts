@@ -35,7 +35,7 @@ export class ActiveComponent implements OnInit {
   }
 
   updateTask($event: Task) {
-    let index = this.allTasks.indexOf($event);
+    let index = this.allTasks.findIndex(task => task.id === $event.id);
     this.allTasks[index] = $event;
     this.taskService.updateTasksData(this.allTasks);
   }

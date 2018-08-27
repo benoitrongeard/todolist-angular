@@ -56,14 +56,21 @@
 
       <div class="flex no-margin td-update-mode-container">
         <div class="no-padding flex align-center">
-          <button class="button td-button" [disabled]="loading">Update</button>
+          <button *ngIf="!updateLoading; else loadingUpdateBlock" class="button td-button" (click)="updateTaskWithForm()" [disabled]="loading">Update</button>
+          <ng-template #loadingUpdateBlock>
+            <button class="button td-button td-button-fixe">
+              <div class="td-loader-circle">
+                <div class="loader"></div>
+              </div>
+            </button>
+          </ng-template>
           <button class="button td-button td-button-transparent" (click)="toggleMode('consult')" [disabled]="loading">Cancel</button>
         </div>
         <div class="no-padding">
-          <button *ngIf="!loading; else elseBlock" (click)="deleteTask()" class="button td-button td-danger" [disabled]="loading">
+          <button *ngIf="!loading||updateLoading; else loadingDeleteBlock" (click)="deleteTask()" class="button td-button td-danger" [disabled]="updateLoading">
             Delete
           </button>
-          <ng-template #elseBlock>
+          <ng-template #loadingDeleteBlock>
             <button class="button td-button td-danger-fixe">
               <div class="td-loader-circle">
                 <div class="loader loader-danger"></div>

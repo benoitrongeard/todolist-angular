@@ -19,6 +19,7 @@ export class TaskComponent implements OnInit {
   faCalendar = faCalendarAlt;
   diffDate: number = null;
   loading: boolean = false;
+  updateLoading: boolean = false;
   mode: string = 'consult';
   updateTaskForm: FormGroup;
 
@@ -59,9 +60,21 @@ export class TaskComponent implements OnInit {
     this.updateTask("complete");
   }
 
+  updateTaskWithForm() {
+    this.task = new Task(this.updateTaskForm.value);
+    let calendarDate = this.updateTaskForm.controls.due_at.value;
+    if (calendarDate != null) {
+      let dateFormated: any = new Date(calendarDate);
+      dateFormated = dateFormated.toLocaleDateString('fr-CA');
+      this.task.setDate(dateFormated);
+    }
+    this.updateTask("");
+  }
+
   updateTask(taskFunction) {
     this.loading = true;
-    
+    this.updateLoading = true;
+
     this.task.formatDateForApi();
 
     switch (taskFunction) {
@@ -77,12 +90,16 @@ export class TaskComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
+          this.task = data;
           this.loading = false;
+          this.updateLoading = false;
           this.updateTaskEvent.emit(this.task);
           this.alert.showSuccess("Task updated");
+          this.toggleMode('consult');
         },
         error => {
           this.loading = false;
+          this.updateLoading = false;
           let errors = this.alert.decodeError(error);
           this.alert.showError(errors);
         });

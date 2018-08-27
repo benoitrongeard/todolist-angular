@@ -40,6 +40,20 @@ body {
     }
 }
 
+.td-button-fixe {
+    &:hover {
+        background-color: #FFFFFF;
+        color: $primary;
+        border-color: $primary;
+    }
+
+    &:focus, &:active {
+        background-color: #FFFFFF;
+        color: $primary;
+        border-color: $primary;
+    }
+}
+
 .td-button-transparent {
     @extend .td-button;
     border-color: transparent;

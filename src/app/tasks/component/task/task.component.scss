@@ -138,6 +138,8 @@
     div:first-child {
         button {
             margin-right: 1rem;
+            min-width: 5rem;
+            transition: transform 1s ease-out;
         }
     }
     

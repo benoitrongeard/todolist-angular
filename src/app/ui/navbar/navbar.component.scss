@@ -24,6 +24,10 @@
     }
 
     .navbar-menu {
+        .navbar-item {
+            text-align: center;
+        }
+
         .td-navbar-link {
             color: $primary;
             font-weight: bold;

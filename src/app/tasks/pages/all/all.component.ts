@@ -19,6 +19,10 @@ export class AllComponent implements OnInit {
     this.taskService.getTasksData().subscribe((tasks) => {
       this.allTasks = tasks;
     });
+   
+   let userId = 1 // a récupérer depuis le localstorage par exemple
+   Echo.private(`App.User.${userId}`)
+       .listen('TaskCreated', e => this.allTasks[] = e.task)
   }
 
   updateTask($event: Task) {

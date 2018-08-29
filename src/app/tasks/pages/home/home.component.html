@@ -42,7 +42,7 @@
         <a routerLink="/home/all" (click)="toggleTab('all')">All ({{activeTask + completedTask}})</a>
       </li>
       <li [ngClass]="{'is-active': tab == 'completed'}">
-        <a (click)="toggleTab('completed')">Completed ({{completedTask}})</a>
+        <a routerLink="/home/completed" (click)="toggleTab('completed')">Completed ({{completedTask}})</a>
       </li>
     </ul>
   </div>

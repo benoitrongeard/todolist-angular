@@ -9,6 +9,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ActiveComponent } from './pages/active/active.component';
 import { TaskComponent } from './component/task/task.component';
 import { AllComponent } from './pages/all/all.component';
+import { CompletedComponent } from './pages/completed/completed.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,6 @@ import { AllComponent } from './pages/all/all.component';
     ReactiveFormsModule,
     SharedModule,
   ],
-  declarations: [ActiveComponent, HomeComponent, TaskComponent, AllComponent]
+  declarations: [ActiveComponent, HomeComponent, TaskComponent, AllComponent, CompletedComponent]
 })
 export class TasksModule { }

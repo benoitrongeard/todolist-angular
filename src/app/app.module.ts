@@ -3,7 +3,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { Ng2IziToastModule } from 'ng2-izitoast';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 
@@ -28,7 +27,6 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    Ng2IziToastModule,
     SharedModule
   ],
   providers: [

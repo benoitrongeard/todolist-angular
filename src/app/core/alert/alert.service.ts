@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Ng2IzitoastService } from 'ng2-izitoast';
+
+declare var iziToast: any;
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +37,7 @@ export class AlertService {
     position: 'topCenter', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
     target: '',
     targetFirst: true,
-    toastOnce: false,
+    displayMode: 'replace',
     timeout: 5000,
     animateInside: true,
     drag: true,
@@ -60,7 +61,7 @@ export class AlertService {
     onClosed: function () { }
   }
 
-  constructor(public iziToast: Ng2IzitoastService) { }
+  constructor(  ) { }
 
   showError(errors) {
     let config = {
@@ -73,7 +74,7 @@ export class AlertService {
     //Merge default config with error config
     this.toasterConfig = { ...this.toasterConfig, ...config };
 
-    this.iziToast.show(this.toasterConfig);
+    iziToast.show(this.toasterConfig);
   }
 
   showSuccess(msg) {
@@ -81,13 +82,13 @@ export class AlertService {
       color: 'green',
       icon: 'ico-success',
       title: 'Success',
-      message: msg,
+      message: msg
     }
 
     //Merge default config with error config
     this.toasterConfig = { ...this.toasterConfig, ...config };
 
-    this.iziToast.show(this.toasterConfig);
+    iziToast.show(this.toasterConfig);
   }
 
   decodeError(httpErrors, formbuilder = null): Object {

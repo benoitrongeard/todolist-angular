@@ -8,6 +8,8 @@ import { first } from 'rxjs/operators';
 import { Task } from 'src/app/shared/models/task';
 import { ActivatedRoute } from '@angular/router';
 
+declare var window: any;
+
 @Component({
   selector: 'td-home',
   templateUrl: './home.component.html',
@@ -44,6 +46,30 @@ export class HomeComponent implements OnInit {
       title: [this.taskObj.title, Validators.required],
       due_at: [this.taskObj.due_at]
     });
+
+    if (window.Echo) {
+      let userId = localStorage.getItem('userId');
+
+      window.Echo.private(`App.User.${userId}`)
+        .listen('TaskCreated', e => this.addTaskFromBroadcast(e.task));
+    }
+  }
+
+  addTaskFromBroadcast(newTask: Task) {
+    newTask = new Task(newTask);
+
+    let taskById = this.tasks.filter(
+      task => task.id === newTask.id
+    );
+
+    //If taskById don't exist, we need to add it, if not do nothing
+    //The websocket event also appears when the recipient is the same as the sender
+    if (taskById.length == 0) {
+      this.tasks.push(newTask);
+      this.taskService.updateTasksData(this.tasks);
+      this.countTask();
+      this.alert.showSuccess("Task added");
+    }
   }
 
   addTask() {
@@ -67,11 +93,20 @@ export class HomeComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.tasks.push(data);
-          this.countTask();
-          this.taskService.updateTasksData(this.tasks);
           this.loading = false;
-          this.alert.showSuccess("Task added");
+
+          let taskById = this.tasks.filter(
+            task => task.id === data.id
+          );
+
+          //If taskById don't exist, we need to add it, if not do nothing
+          //The websocket event also appears when the recipient is the same as the sender
+          if (taskById.length == 0) {
+            this.tasks.push(data);
+            this.countTask();
+            this.taskService.updateTasksData(this.tasks);
+            this.alert.showSuccess("Task added");
+          }
           this.addTaskForm.reset();
         },
         error => {

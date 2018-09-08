@@ -73,7 +73,6 @@ export class TaskComponent implements OnInit {
     if (taskUpdated.id == this.task.id) {
         this.task = taskUpdated;
         this.updateTaskEvent.emit(this.task);
-        this.alert.showSuccess("Task updated");
     }
   }
 
@@ -83,7 +82,6 @@ export class TaskComponent implements OnInit {
     //The websocket event return all tasks. But we edit just one by one. So we need we observe the changes of our.
     if (taskDeleted.id == this.task.id) {
       this.deleteTaskEvent.emit(this.task);
-      this.alert.showSuccess("Task deleted");
     }
   }
 
@@ -125,6 +123,7 @@ export class TaskComponent implements OnInit {
           this.updateLoading = false;
           this.task = data;
           this.updateTaskEvent.emit(this.task);
+          this.alert.showSuccess("Task updated");
           this.toggleMode('consult');
         },
         error => {

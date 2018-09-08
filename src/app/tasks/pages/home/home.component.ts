@@ -68,7 +68,6 @@ export class HomeComponent implements OnInit {
       this.tasks.push(newTask);
       this.taskService.updateTasksData(this.tasks);
       this.countTask();
-      this.alert.showSuccess("Task added");
     }
   }
 
@@ -105,8 +104,8 @@ export class HomeComponent implements OnInit {
             this.tasks.push(data);
             this.countTask();
             this.taskService.updateTasksData(this.tasks);
-            this.alert.showSuccess("Task added");
           }
+          this.alert.showSuccess("Task added");
           this.addTaskForm.reset();
         },
         error => {

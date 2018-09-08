@@ -1,5 +1,5 @@
 <div>
-  <div *ngFor="let task of allTasks">
+  <div *ngFor="let task of allTasks" class="td-task-parent-container">
     <td-task (deleteTaskEvent)="deleteTask($event)" (updateTaskEvent)="updateTask($event)" [task]="task"></td-task>
   </div>
 </div>

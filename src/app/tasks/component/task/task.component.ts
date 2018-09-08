@@ -8,6 +8,8 @@ import { Task } from 'src/app/shared/models/task';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { faCalendarAlt } from '@fortawesome/free-regular-svg-icons';
 
+declare var window: any;
+
 @Component({
   selector: 'td-task',
   templateUrl: './task.component.html',
@@ -54,6 +56,35 @@ export class TaskComponent implements OnInit {
       is_completed: [this.task.is_completed],
       id: [this.task.id]
     });
+
+    if (window.Echo) {
+      let userId = localStorage.getItem('userId');
+
+      window.Echo.private(`App.User.${userId}`)
+        .listen('TaskUpdated', e => this.updateTaskFromBroadcast(e.task))
+        .listen('TaskDeleted', e => this.deleteTaskFromBroadcast(e.task));
+    }
+  }
+
+  updateTaskFromBroadcast(taskUpdated: Task) {
+    taskUpdated = new Task(taskUpdated);
+
+    //The websocket event return all tasks. But we edit just one by one. So we need we observe the changes of our.
+    if (taskUpdated.id == this.task.id) {
+        this.task = taskUpdated;
+        this.updateTaskEvent.emit(this.task);
+        this.alert.showSuccess("Task updated");
+    }
+  }
+
+  deleteTaskFromBroadcast(taskDeleted: Task) {
+    taskDeleted = new Task(taskDeleted);
+
+    //The websocket event return all tasks. But we edit just one by one. So we need we observe the changes of our.
+    if (taskDeleted.id == this.task.id) {
+      this.deleteTaskEvent.emit(this.task);
+      this.alert.showSuccess("Task deleted");
+    }
   }
 
   completeTask() {
@@ -90,11 +121,10 @@ export class TaskComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.task = data;
           this.loading = false;
           this.updateLoading = false;
+          this.task = data;
           this.updateTaskEvent.emit(this.task);
-          this.alert.showSuccess("Task updated");
           this.toggleMode('consult');
         },
         error => {

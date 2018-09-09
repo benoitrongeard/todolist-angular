@@ -51,7 +51,9 @@ export class HomeComponent implements OnInit {
       let userId = localStorage.getItem('userId');
 
       window.Echo.private(`App.User.${userId}`)
-        .listen('TaskCreated', e => this.addTaskFromBroadcast(e.task));
+        .listen('TaskCreated', e => this.addTaskFromBroadcast(e.task))
+        .listen('TaskUpdated', e => this.updateTaskFromBroadcast(e.task))
+        .listen('TaskDeleted', e => this.deleteTaskFromBroadcast(e.task));
     }
   }
 
@@ -67,7 +69,37 @@ export class HomeComponent implements OnInit {
     if (taskById.length == 0) {
       this.tasks.push(newTask);
       this.taskService.updateTasksData(this.tasks);
-      this.countTask();
+      this.alert.showSuccess("Task added");
+    }
+  }
+
+  updateTaskFromBroadcast(taskUpdated: Task) {
+    taskUpdated = new Task(taskUpdated);
+
+    let localTaskById: any = this.tasks.find(
+      task => task.id === taskUpdated.id
+    );
+
+    //The websocket event return all tasks. But we edit just one by one. So we need we observe the changes of our.
+    if (localTaskById) {
+      let indexOfTask = this.tasks.indexOf(localTaskById);
+      this.tasks[indexOfTask] = taskUpdated;
+      this.taskService.updateTasksData(this.tasks);
+    }
+  }
+
+  deleteTaskFromBroadcast(taskDeleted: Task) {
+    taskDeleted = new Task(taskDeleted);
+
+    let localTaskById: any = this.tasks.find(
+      task => task.id === taskDeleted.id
+    );
+
+    //The websocket event return all tasks. But we edit just one by one. So we need we observe the changes of our.
+    if (localTaskById) {
+      let indexOfTask = this.tasks.indexOf(localTaskById);
+      this.tasks.splice(indexOfTask, 1);
+      this.taskService.updateTasksData(this.tasks);
     }
   }
 
@@ -104,8 +136,8 @@ export class HomeComponent implements OnInit {
             this.tasks.push(data);
             this.countTask();
             this.taskService.updateTasksData(this.tasks);
+            this.alert.showSuccess("Task added");
           }
-          this.alert.showSuccess("Task added");
           this.addTaskForm.reset();
         },
         error => {

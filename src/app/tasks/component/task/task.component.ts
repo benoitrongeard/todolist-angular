@@ -56,33 +56,6 @@ export class TaskComponent implements OnInit {
       is_completed: [this.task.is_completed],
       id: [this.task.id]
     });
-
-    if (window.Echo) {
-      let userId = localStorage.getItem('userId');
-
-      window.Echo.private(`App.User.${userId}`)
-        .listen('TaskUpdated', e => this.updateTaskFromBroadcast(e.task))
-        .listen('TaskDeleted', e => this.deleteTaskFromBroadcast(e.task));
-    }
-  }
-
-  updateTaskFromBroadcast(taskUpdated: Task) {
-    taskUpdated = new Task(taskUpdated);
-
-    //The websocket event return all tasks. But we edit just one by one. So we need we observe the changes of our.
-    if (taskUpdated.id == this.task.id) {
-        this.task = taskUpdated;
-        this.updateTaskEvent.emit(this.task);
-    }
-  }
-
-  deleteTaskFromBroadcast(taskDeleted: Task) {
-    taskDeleted = new Task(taskDeleted);
-
-    //The websocket event return all tasks. But we edit just one by one. So we need we observe the changes of our.
-    if (taskDeleted.id == this.task.id) {
-      this.deleteTaskEvent.emit(this.task);
-    }
   }
 
   completeTask() {

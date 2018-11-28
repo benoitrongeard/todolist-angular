@@ -1,29 +1,36 @@
-# TodolistAngular
+# Todolist
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/BRongeard)
 
-![Screenshot](https://raw.githubusercontent.com/dualshote/todolist-angular/master/login-page-screenshot.png)
+The purpose of this repository is to consume API, provide by a [Laravel Application](https://github.com/guillaumebriday/todolist-backend-laravel), with the Angular JavaScript front-end framework.
+
+![Screenshot](https://raw.githubusercontent.com/benoitrongeard/todolist-angular/master/login-page-screenshot.png)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.7.
 
-## Development server
+## Installation
+
+Development environment requirements : 
+* [Nodejs](https://nodejs.org/en/)
+
+Run : 
+```bash
+$ git clone https://github.com/benoitrongeard/todolist-angular.git
+$ cd todolist-angular
+$ npm install
+```
+
+## Run server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
+## Deploy in production
+This application is hosted on Netlify and available on http://todolist.benoit-rongeard.fr
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Next features
+* Set up PWA
+* Add unit tests
+* Add internationalization (Fr)

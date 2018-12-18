@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  api: "https://todolist-backend.guillaumebriday.xyz/api/v1/",
-  broadcastingBaseUrl: 'https://todolist-backend.guillaumebriday.xyz/',
+  api: "https://todolist-api.guillaumebriday.xyz/api/v1/",
+  broadcastingBaseUrl: 'https://todolist-api.guillaumebriday.xyz/',
   pusher_app_key: '711760424fa1664773d1'
 };
 

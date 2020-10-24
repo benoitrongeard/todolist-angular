@@ -13,6 +13,8 @@ import { ProfileComponent } from './core/profile/profile.component';
 
 import { JwtInterceptor } from './core/auth/jwt.interceptor';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     {
